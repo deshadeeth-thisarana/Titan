@@ -74,40 +74,60 @@ def get_readable_time(seconds: int) -> str:
 
 
 PM_START_TEXT = """
-`Hellow` [🤗](https://telegra.ph/file/6937614341f42020a2ebc.jpg) `My name is` *Masha*
-`I'm here to help you manage your groups! Hit` *📚Commands* `button below to find out more about how to use me to my full potential.` 
+Hello[👋](https://telegra.ph/file/9175b634560b417d4114c.jpg) {}, My name is *Titan*
+
+I am a group managing bot🤖 created by [Đ€Ş卄ΔĐ€€Ť卄 Ť卄ĪŞΔŘคŇΔ](http://t.me/DeshadeethThisarana)
+
+I am very powerful🦾 & I will help in managing your group👨‍💻
+
+You can find my list of available commands by sending /help or clicking *📚Commands* button below
+
+©2021 [🛡Ģ₳ŇĞ🛡 ØF FŔĮĘŃĐŞ📝](http://t.me/gangoffriends) 
+©2021 [Đ€Ş卄ΔĐ€€Ť卄 Ť卄ĪŞΔŘคŇΔ](http://t.me/DeshadeethThisarana) 
+
+⚠️All Rights Reserved⚠️
 """
 
 buttons = [
     [
-        InlineKeyboardButton(
-            text="➕️ ADD MASHA TO YOUR GROUP ➕️", url="t.me/MashaRoBot?startgroup=true"),
-    ],
-    [
-        InlineKeyboardButton(text="ℹ️ ABOUT", callback_data="masha_"),
         InlineKeyboardButton(text="📚 COMMANDS", callback_data="help_back"),
+        InlineKeyboardButton(text="ABOUT🇱🇰", callback_data="masha_"), 
     ],
     [
-        InlineKeyboardButton(
-            text="💾 SOURCE", callback_data="source_"),
-        InlineKeyboardButton(
-            text="👥 SUPPORT", url="https://t.me/wastebots"
+        
+        InlineKeyboardButton(text="🧰 Support Group 🧰", url="https://t.me/gangoffriends"),
+        InlineKeyboardButton(text="📺 Update Channel 📺", url="https://t.me/gangoffriendschannel"),
+    ],
+    [
+        InlineKeyboardButton(text="⚡️ Developer ⚡️", url="https://t.me/DeshadeethThisarana"),
+    ],
+    [    
+        InlineKeyboardButton(text="", url="https://t.me/Mr_Titan_robot?startgroup=true"
         ),
     ],
 ]
 
 
 HELP_STRINGS = """
-`Hi.. I'm` [MASHA🙋‍♀️](https://telegra.ph/file/6937614341f42020a2ebc.jpg)
-`Click on the buttons below to get documentation about specific modules..`"""
+Hi.. again. I'm Titan[🤖](https://telegra.ph/file/9175b634560b417d4114c.jpg)
+
+Main Commands :
+✪ /start: Starts me! You've probably already used this.
+✪ /help: Click this, I'll let you know about myself!
+✪ /donate: You can support my creater using this command.
+✪ /settings: 
+   ◔ in PM: will send you your settings for all supported modules.
+   ◔ in a Group: will redirect you to pm, with all that chat's settings.
+
+Click on the buttons below to get documentation about specific modules.."""
 
 
-MASHA_IMG = "https://telegra.ph/file/6937614341f42020a2ebc.jpg"
+MASHA_IMG = "https://telegra.ph/file/9175b634560b417d4114c.jpg"
 
 DONATE_STRING = """Heya, glad to hear you want to donate!
- You can support the project via [Paypal](ko-fi.com/sawada) or by contacting @Sawada \
- Supporting isnt always financial! \
- Those who cannot provide monetary support are welcome to help us develop the bot at @OnePunchDev."""
+ You can support the owner via [Telegram](t.me/deshadeeththisarana) or [Paypal](paypal.me/deshadeethisarana) \
+ Supporting isn't always financial! \
+ Those who cannot provide monetary support are welcome to help us develop the bot at @GangOfFriends."""
 
 IMPORTED = {}
 MIGRATEABLE = []
@@ -192,7 +212,7 @@ def start(update: Update, context: CallbackContext):
                     update.effective_chat.id,
                     HELPABLE[mod].__help__,
                     InlineKeyboardMarkup(
-                        [[InlineKeyboardButton(text="⬅️ BACK", callback_data="help_back")]]
+                        [[InlineKeyboardButton(text="🔙BACK", callback_data="help_back")]]
                     ),
                 )
 
@@ -216,13 +236,13 @@ def start(update: Update, context: CallbackContext):
                 timeout=60,
             )
     else:
-        update.effective_message.reply_text(
-            "I'm awake already!\n<b>Haven't slept since:</b> <code>{}</code>".format(
-                uptime
-            ),
-            parse_mode=ParseMode.HTML,
-        )
-
+        update.effective_message.reply_photo(
+                MASHA_IMG,
+                GROUP_START_TEXT,
+                parse_mode=ParseMode.HTML,
+        ) 
+            
+     GROUP_START_TEXT = "Hey! How can I help you?😊"
 
 def error_handler(update, context):
     """Log the error and send a telegram message to notify the developer."""
@@ -306,7 +326,7 @@ def help_button(update, context):
                 parse_mode=ParseMode.MARKDOWN,
                 disable_web_page_preview=True,
                 reply_markup=InlineKeyboardMarkup(
-                    [[InlineKeyboardButton(text="Back", callback_data="help_back")]]
+                    [[InlineKeyboardButton(text="🔙Back", callback_data="help_back")]]
                 ),
             )
 
@@ -352,22 +372,21 @@ def Masha_about_callback(update, context):
     query = update.callback_query
     if query.data == "masha_":
         query.message.edit_text(
-            text=""" ℹ️ I'm *MASHA*, a powerful group management bot built to help you manage your group easily.
+            text="""I'm *Titan*, a powerful group management bot built to help you manage your group easily.
                  \n❍ I can restrict users.
                  \n❍ I can greet users with customizable welcome messages and even set a group's rules.
                  \n❍ I have an advanced anti-flood system.
                  \n❍ I can warn users until they reach max warns, with each predefined actions such as ban, mute, kick, etc.
                  \n❍ I have a note keeping system, blacklists, and even predetermined replies on certain keywords.
                  \n❍ I check for admins' permissions before executing any command and more stuffs
-                 \n\n_Masha's licensed under the GNU General Public License v3.0_
-                 \nHere is the [💾Repository](https://github.com/Mr-Dark-Prince/MashaRoBot).
-                 \n\nIf you have any question about Masha, let us know at @WasteBots.""",
+                 \n\n_Titan is licensed under the GNU General Public License v3.0_
+                 \n\nIf you have any question about Titan, let us know at @GangOfFriends.""",
             parse_mode=ParseMode.MARKDOWN,
             disable_web_page_preview=True,
             reply_markup=InlineKeyboardMarkup(
                 [
                  [
-                    InlineKeyboardButton(text="Back", callback_data="masha_back")
+                    InlineKeyboardButton(text="🔙Back", callback_data="masha_back")
                  ]
                 ]
             ),
@@ -387,14 +406,19 @@ def Source_about_callback(update, context):
     query = update.callback_query
     if query.data == "source_":
         query.message.edit_text(
-            text=""" Hi..🤗 I'm *MASHA*
-                 \nHere is the [Source Code](https://github.com/Mr-Dark-Prince/MashaRoBot) .""",
+            text=""" Hi..🤗 I'm *Titan*
+                 \n\nHere is the [Source Code](https://github.com/deshadeeth-thisarana/Arrow) of [Arrow](t.me/MrArrowbot)
+                 \n\n   &
+                 \n\nHere is the [Source Code](https://github.com/deshadeeth-thisarana/Arrow2) of [Arrow](t.me/MrArrow2bot)                
+                 
+                 These two bots are same but one bot is English & other is Sinhala
+                 """,
             parse_mode=ParseMode.MARKDOWN,
             disable_web_page_preview=True,
             reply_markup=InlineKeyboardMarkup(
                 [
                  [
-                    InlineKeyboardButton(text="Go Back", callback_data="source_back")
+                    InlineKeyboardButton(text="🔙Back", callback_data="source_back")
                  ]
                 ]
             ),
@@ -408,6 +432,8 @@ def Source_about_callback(update, context):
                 disable_web_page_preview=True,
         )
 
+GROUP_HELP_TEXT =  f"Contact me in PM to get help of {module.capitalize()}",
+        
 @run_async
 def get_help(update: Update, context: CallbackContext):
     chat = update.effective_chat  # type: Optional[Chat]
@@ -417,8 +443,9 @@ def get_help(update: Update, context: CallbackContext):
     if chat.type != chat.PRIVATE:
         if len(args) >= 2 and any(args[1].lower() == x for x in HELPABLE):
             module = args[1].lower()
-            update.effective_message.reply_text(
-                f"Contact me in PM to get help of {module.capitalize()}",
+            update.effective_message.reply_photo(
+                MASHA_IMG,
+                GROUP_HELP_TEXT,
                 reply_markup=InlineKeyboardMarkup(
                     [
                         [
@@ -432,9 +459,14 @@ def get_help(update: Update, context: CallbackContext):
                     ]
                 ),
             )
+       
+    
+    GROUP_HELP_TEXT_2 = "Contact me in PM to get the list of possible commands.",
+    
             return
-        update.effective_message.reply_text(
-            "Contact me in PM to get the list of possible commands.",
+        update.effective_message.reply_photo(
+            MASHA_IMG,
+            GROUP_HELP_TEXT_2
             reply_markup=InlineKeyboardMarkup(
                 [
                     [
@@ -460,7 +492,7 @@ def get_help(update: Update, context: CallbackContext):
             chat.id,
             text,
             InlineKeyboardMarkup(
-                [[InlineKeyboardButton(text="Back", callback_data="help_back")]]
+                [[InlineKeyboardButton(text="🔙Back", callback_data="help_back")]]
             ),
         )
 
@@ -533,7 +565,7 @@ def settings_button(update: Update, context: CallbackContext):
                     [
                         [
                             InlineKeyboardButton(
-                                text="Back",
+                                text="🔙Back",
                                 callback_data="stngs_back({})".format(chat_id),
                             )
                         ]
@@ -638,7 +670,7 @@ def donate(update: Update, context: CallbackContext):
         if OWNER_ID != 254318997 and DONATION_LINK:
             update.effective_message.reply_text(
                 "You can also donate to the person currently running me "
-                "[here]({})".format(DONATION_LINK),
+                "[Click here](t.me/DeshadeethThisarana)",
                 parse_mode=ParseMode.MARKDOWN,
             )
 
@@ -683,7 +715,7 @@ def main():
 
     if SUPPORT_CHAT is not None and isinstance(SUPPORT_CHAT, str):
         try:
-            dispatcher.bot.sendMessage(f"@{SUPPORT_CHAT}", "Yes I'm alive 😹")
+            dispatcher.bot.sendMessage(f"@Mybots_DT", "I am now online🙋‍♂️")
         except Unauthorized:
             LOGGER.warning(
                 "Bot isnt able to send message to support_chat, go and check!"
